@@ -8,8 +8,8 @@
   },
   "keywords": [],
   "author": "",
-  "repository": {
-    "url": "https://github.com/shalukanna/new-npm-demo.git"
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@shalukanna"
   },
   "license": "ISC"
 }
