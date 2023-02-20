@@ -1,0 +1,15 @@
+{
+  "name": "@shalukanna/new-npm-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "repository": {
+    "url": "git://github.com/shalukanna/new-npm-demo.git."
+  },
+  "license": "ISC"
+}
