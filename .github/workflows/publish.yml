@@ -10,13 +10,12 @@ on:
     branches: [ "*" ]
 
 jobs:
-  quality:
-
+  publish-gpr:
+    name: Publish to GPR
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -26,6 +25,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    
+    - name: Config git user
+      run: |
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git remote set-url origin https://${{ github.actor }}:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
+    - run: yarn install
+    - run: yarn run build:components
+    - run: yarn run publish:components
+      if: ${{ github.ref == 'refs/heads/main' }}
